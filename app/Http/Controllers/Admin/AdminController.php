@@ -312,7 +312,7 @@ class AdminController extends Controller
         ]);
 
         return back();
-    }p
+    }
 
     //LOGOUT
 
