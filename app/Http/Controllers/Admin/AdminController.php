@@ -9,6 +9,7 @@ use App\Http\Requests\BookCopyStoreRequest;
 use App\Http\Requests\BookStoreRequest;
 use App\Http\Requests\CategoryStoreRequest;
 use App\Http\Requests\UpdateAuthorRequest;
+use App\Http\Requests\UpdateBookCopyRequest;
 use App\Http\Requests\UpdateBookRequest;
 use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Author;
@@ -84,7 +85,7 @@ class AdminController extends Controller
         return redirect()->route('admin.category');
     }
 
-        public function adminDeleteCategory(Category $category)
+    public function adminDeleteCategory(Category $category)
     {
         if ($category->books->count() >= 1) {
             return back();
@@ -237,6 +238,31 @@ class AdminController extends Controller
     {
         Copy::create($request->validated());
         return back();
+    }
+
+    public function adminEditBookCopy(Copy $copy)
+    {
+        $books = Book::all();
+        return view('admin.sections.book.book_copy_edit', compact('copy', 'books'));
+    }
+
+    public function adminUpdateBookCopy(UpdateBookCopyRequest $request, $copy)
+    {
+
+        $copy = Copy::findOrFail($copy);
+
+        $copy->update($request->validated());
+
+        return redirect()->route('admin.book_copies');
+    }
+
+    public function adminDeleteBookCopy(Copy $copy)
+    {
+        if ($copy->status == 1) {
+            return back();
+        }
+
+        $copy->delete();
     }
 
     //BORROWED BOOKS

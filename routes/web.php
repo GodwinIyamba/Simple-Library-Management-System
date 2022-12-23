@@ -62,6 +62,9 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function(){
         Route::get('/add-book-copy', [AdminController::class, 'adminAddBookCopy'])->name('add_book_copy');
         Route::post('/store-book', [AdminController::class, 'adminStoreBook'])->name('store_book');
         Route::post('/store-book-copy', [AdminController::class, 'adminStoreBookCopy'])->name('store_book_copy');
+        Route::get('/edit-book-copy/{copy}', [AdminController::class, 'adminEditBookCopy'])->name('edit_book_copy');
+        Route::post('/update-book-copy/{copy}', [AdminController::class, 'adminUpdateBookCopy'])->name('update_book_copy');
+        Route::get('/delete-book-copy/{copy}', [AdminController::class, 'adminDeleteBookCopy'])->name('delete_book_copy');
         Route::get('/borrowed-books', [AdminController::class, 'adminBorrowedBooks'])->name('borrowed_books');
         Route::get('/pending-books', [AdminController::class, 'adminPendingBooks'])->name('pending_books');
         Route::get('/returned-books', [AdminController::class, 'adminReturnedBooks'])->name('returned_books');
