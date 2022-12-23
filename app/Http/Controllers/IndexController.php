@@ -12,7 +12,6 @@ use App\Models\Log;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class IndexController extends Controller
@@ -22,8 +21,6 @@ class IndexController extends Controller
         $categories = Category::with('books.author')->whereHas('books', function(Builder $query) {
             $query->has('copies');
         })->get();
-
-//        dd($categories);
 
         return view('frontend.home', compact('categories'));
     }
@@ -35,9 +32,13 @@ class IndexController extends Controller
     public function userProfile()
     {
         $current_user = Auth::user();
-        $borrowed_books = Lend::where('user_id', Auth::id())->where('status', 0)->get();
-        $pending_books = Lend::where('user_id', Auth::id())->where('status', 1)->get();
-        $returned_books = Log::where('user_id', Auth::id())->where('status', 3)->get();
+
+        $borrowed_books = Lend::with('copy')->where('user_id', Auth::id())->where('status', 0)->get();
+
+        $pending_books = Lend::with('copy')->where('user_id', Auth::id())->where('status', 1)->get();
+
+        $returned_books = Log::with('copy')->where('user_id', Auth::id())->where('status', 3)->get();
+
         return view('frontend.pages.dashboard', compact('current_user', 'borrowed_books', 'returned_books', 'pending_books'));
     }
 

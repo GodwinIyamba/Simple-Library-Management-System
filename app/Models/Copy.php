@@ -11,6 +11,7 @@ class Copy extends Model
     use HasFactory;
 
     protected $guarded = [];
+    protected $with = ['book'];
 
     public function book()
     {
