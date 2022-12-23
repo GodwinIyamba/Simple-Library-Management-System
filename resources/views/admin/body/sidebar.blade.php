@@ -6,7 +6,7 @@
             <span class="smini-visible">
               <i class="fa fa-circle-notch text-primary"></i>
             </span>
-            <span class="smini-hide fs-5 tracking-wider">Book4Rent</span>
+            <span class="smini-hide fs-5 tracking-wider">Book4Borrow</span>
         </a>
         <!-- END Logo -->
 

@@ -53,14 +53,14 @@
                                                         <div class="row">
                                                             <div class="col-md-6 form-group">
                                                                 <label>Start Date:</label>
-                                                                <input type="date" name="start_date" class="form-control" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}">
+                                                                <input type="date" name="start_date" class="form-control" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" max="{{ \Carbon\Carbon::now()->addMonth(1)->format('Y-m-d') }}">
                                                                 @error('start_date')
                                                                 {{ $message }}
                                                                 @enderror
                                                             </div>
                                                             <div class="col-md-6 form-group">
                                                                 <label>Return Date:</label>
-                                                                <input type="date" name="end_date"class="form-control" max="{{ \Carbon\Carbon::now()->addMonth(1)->format('Y-m-d') }}">
+                                                                <input type="date" name="end_date"class="form-control" min="{{ \Carbon\Carbon::now()->format('Y-m-d') }}" max="{{ \Carbon\Carbon::now()->addMonth(1)->format('Y-m-d') }}">
                                                                 @error('end_date')
                                                                 {{ $message }}
                                                                 @enderror
