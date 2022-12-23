@@ -25,7 +25,7 @@
 
     <!-- Document Title
     ============================================= -->
-    <title>Book4Rent</title>
+    <title>Book4Borrow</title>
 
 </head>
 

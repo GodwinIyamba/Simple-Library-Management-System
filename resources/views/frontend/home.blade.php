@@ -2,25 +2,18 @@
 @section('main')
     @include('frontend.body.title', [
     'title' => 'Books',
-    'description' => 'Start renting your Favourite Books'
+    'description' => 'Start borrowing your favourite Books'
     ])
     <section id="content">
-        <div class="content-wrap">
+        <div class="content-wrap" style="padding-top: 40px;">
             <div class="container clearfix">
-
-                <!-- Shop
-                ============================================= -->
                 @foreach($categories as $category)
                     <div id="shop" class="shop row grid-container grid-6" data-layout="fitRows">
                         <div class="topmargin-sm mb-4 text-center">
-                            @if($loop->iteration == 1)
                                 <h3 class="m-0">{{ $category->name }}</h3>
-                            @else
-                                <h3 class="mt-5 mb-0">{{ $category->name }}</h3>
-                            @endif
-                            <a href="#" class="button bg-dark text-white button-dark button-small ms-0">View All</a>
+                            <a href="{{ route('category', $category) }}" class="button bg-dark text-white button-dark button-small ms-0">View All</a>
                         </div>
-                        @foreach($category->books->take(4) as $book)
+                        @foreach($category->books->take(6) as $book)
                             <div class="product col-lg-2 col-md-3 col-6 px-2">
                                 <div class="grid-inner">
                                     <div class="product-image">

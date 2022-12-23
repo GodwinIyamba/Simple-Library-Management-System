@@ -24,9 +24,15 @@ class IndexController extends Controller
 
         return view('frontend.home', compact('categories'));
     }
+
     public function aboutView()
     {
         return view('frontend.pages.about');
+    }
+
+    public function categoryView(Category $category)
+    {
+        return view('frontend.pages.category', compact('category'));
     }
 
     public function userProfile()

@@ -29,6 +29,7 @@ Route::middleware([
 
 Route::get('/', [IndexController::class, 'homeView'])->name('home');
 Route::get('/about', [IndexController::class, 'aboutView'])->name('about');
+Route::get('/category/{category}', [IndexController::class, 'categoryView'])->name('category');
 Route::get('/book-details/{book}', [IndexController::class, 'bookDetails'])->name('book_details');
 
 Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function(){

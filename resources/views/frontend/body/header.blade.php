@@ -9,7 +9,7 @@
                 <!-- Logo
                 ============================================= -->
                 <div id="logo">
-                    <h1 class="mt-1 mb-0">Book4Rent</h1>
+                    <h1 class="mt-1 mb-0">Book4Borrow</h1>
                 </div><!-- #logo end -->
 
                 <div class="header-misc">
@@ -63,7 +63,7 @@
                                             <ul class="sub-menu-container mega-menu-column col">
                                                 @foreach($chunk as $category)
                                                     <li class="menu-item">
-                                                        <a class="menu-link" href="animations.html"><div>{{ $category->name }}</div></a>
+                                                        <a class="menu-link" href="{{ route('category', $category) }}"><div>{{ $category->name }}</div></a>
                                                     </li>
                                                 @endforeach
                                             </ul>
