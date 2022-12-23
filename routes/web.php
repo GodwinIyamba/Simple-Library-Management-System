@@ -21,7 +21,7 @@ Route::middleware([
     'verified'
 ])->group(function () {
     Route::get('/dashboard', [IndexController::class, 'userProfile'])->name('dashboard');
-    Route::post('/rent', [IndexController::class, 'rentBooks'])->name('rent_book');
+    Route::post('/borrow-book', [IndexController::class, 'borrowBook'])->name('borrow_book');
     Route::get('/settings', [IndexController::class, 'userSettings'])->name('user_settings');
     Route::post('/update', [IndexController::class, 'userUpdate'])->name('user.update');
     Route::get('/return-book/{book}', [IndexController::class, 'returnBook'])->name('return_book');
@@ -70,7 +70,6 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function(){
         Route::get('/returned-books', [AdminController::class, 'adminReturnedBooks'])->name('returned_books');
         Route::get('/log-books', [AdminController::class, 'adminLogBooks'])->name('log_books');
         Route::get('/accept-book/{book}', [AdminController::class, 'adminAcceptBook'])->name('accept_book');
-        Route::get('/reject-book/{book}', [AdminController::class, 'adminRejectBook'])->name('reject_book');
         Route::get('/edit-book/{book}', [AdminController::class, 'adminEditBook'])->name('edit_book');
         Route::post('/update-book/{book}', [AdminController::class, 'adminUpdateBook'])->name('update_book');
         Route::get('/delete-book/{book}', [AdminController::class, 'adminDeleteBook'])->name('delete_book');

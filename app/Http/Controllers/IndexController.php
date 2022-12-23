@@ -47,7 +47,7 @@ class IndexController extends Controller
         return view('frontend.pages.book_details', compact('book'));
     }
 
-    public function rentBooks(RentBookRequest $request)
+    public function borrowBook(RentBookRequest $request)
     {
         $copy = Copy::where('book_id', $request->book_id)->where('status', 0)->first();
 

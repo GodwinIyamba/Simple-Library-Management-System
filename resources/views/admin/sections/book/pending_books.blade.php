@@ -51,9 +51,6 @@
                                         <a href="{{ route('admin.accept_book', $book) }}" class="btn btn-sm btn-alt-secondary" >
                                             Accept
                                         </a>
-                                        <a href="{{ route('admin.reject_book', $book) }}" class="btn btn-sm btn-alt-secondary">
-                                            Reject
-                                        </a>
                                     </div>
                                 </td>
                             </tr>

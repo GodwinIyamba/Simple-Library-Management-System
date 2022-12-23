@@ -312,27 +312,7 @@ class AdminController extends Controller
         ]);
 
         return back();
-    }
-
-    public function adminRejectBook(Lend $book)
-    {
-        $book->update([
-            'status' => 0
-        ]);
-
-        Copy::findOrFail($book->copy_id)->update([
-            'status' => 1,
-        ]);
-
-        Log::create([
-            'user_id' => $book->user_id,
-            'copy_id' => $book->copy_id,
-            'date' => Carbon::now()->toDateString(),
-            'status' => 4,
-        ]);
-
-        return back();
-    }
+    }p
 
     //LOGOUT
 
