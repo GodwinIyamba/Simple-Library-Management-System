@@ -43,11 +43,17 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function(){
         Route::get('/category', [AdminController::class, 'adminCategory'])->name('category');
         Route::get('/add-category', [AdminController::class, 'adminAddCategory'])->name('add_category');
         Route::post('/store-category', [AdminController::class, 'adminStoreCategory'])->name('store_category');
+        Route::get('/edit-category/{category}', [AdminController::class, 'adminEditCategory'])->name('edit_category');
+        Route::post('/update-category/{category}', [AdminController::class, 'adminUpdateCategory'])->name('update_category');
+        Route::get('/delete-category/{category}', [AdminController::class, 'adminDeleteCategory'])->name('delete_category');
 
         //AUTHOR ROUTES
         Route::get('/author', [AdminController::class, 'adminAuthor'])->name('author');
         Route::get('/add-author', [AdminController::class, 'adminAddAuthor'])->name('add_author');
         Route::post('/store-author', [AdminController::class, 'adminStoreAuthor'])->name('store_author');
+        Route::get('/edit-author/{author}', [AdminController::class, 'adminEditAuthor'])->name('edit_author');
+        Route::post('/update-author/{author}', [AdminController::class, 'adminUpdateAuthor'])->name('update_author');
+        Route::get('/delete-author/{author}', [AdminController::class, 'adminDeleteAuthor'])->name('delete_author');
 
         //BOOK ROUTES
         Route::get('/book', [AdminController::class, 'adminBook'])->name('book');
@@ -62,6 +68,9 @@ Route::namespace('Admin')->prefix('admin')->as('admin.')->group(function(){
         Route::get('/log-books', [AdminController::class, 'adminLogBooks'])->name('log_books');
         Route::get('/accept-book/{book}', [AdminController::class, 'adminAcceptBook'])->name('accept_book');
         Route::get('/reject-book/{book}', [AdminController::class, 'adminRejectBook'])->name('reject_book');
+        Route::get('/edit-book/{book}', [AdminController::class, 'adminEditBook'])->name('edit_book');
+        Route::post('/update-book/{book}', [AdminController::class, 'adminUpdateBook'])->name('update_book');
+        Route::get('/delete-book/{book}', [AdminController::class, 'adminDeleteBook'])->name('delete_book');
 
         //LOGOUT
         Route::post('/logout', [AdminController::class, 'adminLogout'])->name('logout');

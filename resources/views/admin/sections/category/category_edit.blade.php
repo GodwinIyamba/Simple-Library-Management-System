@@ -24,4 +24,36 @@
         </div>
         </div>
     </div>
+    <div class="content">
+        <!-- Basic -->
+        <div class="block block-rounded">
+            <div class="block-content block-content-full">
+                <form action="{{ route('admin.update_category', $category) }}" method="POST">
+                    @csrf
+                    <div class="col-lg-8 col-xl-5">
+                        <div class="mb-2">
+                            <label class="form-label" for="example-text-input">Name</label>
+                            <input type="text" class="form-control @error('name') is-invalid @enderror" id="example-text-input" name="name" placeholder="Sci-fi..." value="{{ $category->name }}">
+                            @error('name')
+                            <span class="mt-2" style="color: #dc2626;">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="mb-2">
+                            <label class="form-label" for="example-text-input">Description</label>
+                            <textarea class="form-control" id="example-textarea-input" name="description" rows="4" placeholder="Science meets fictions...">{{ $category->description }}</textarea>
+                            @error('description')
+                            <span class="mt-2" style="color: #dc2626;">
+                                {{ $message }}
+                            </span>
+                            @enderror
+                        </div>
+                    </div>
+                    <button class="btn btn-dark">Update Category</button>
+                </form>
+            </div>
+        </div>
+        <!-- END Basic -->
+    </div>
 @endsection

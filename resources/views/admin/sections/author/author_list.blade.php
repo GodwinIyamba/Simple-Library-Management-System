@@ -50,12 +50,12 @@
                                 </td>
                                 <td class="text-center">
                                     <div class="btn-group">
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Edit Client">
+                                        <a href="{{ route('admin.edit_author', $author) }}" class="btn btn-sm btn-alt-secondary">
                                             <i class="fa fa-fw fa-pencil-alt"></i>
-                                        </button>
-                                        <button type="button" class="btn btn-sm btn-alt-secondary" data-bs-toggle="tooltip" title="Remove Client">
+                                        </a>
+                                        <a href="{{ route('admin.delete_author', $author) }}" class="btn btn-sm btn-alt-secondary">
                                             <i class="fa fa-fw fa-times"></i>
-                                        </button>
+                                        </a>
                                     </div>
                                 </td>
                             </tr>

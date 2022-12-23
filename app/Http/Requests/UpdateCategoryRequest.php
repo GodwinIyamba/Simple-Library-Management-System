@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class AuthorStoreRequest extends FormRequest
+class UpdateCategoryRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,7 +21,6 @@ class AuthorStoreRequest extends FormRequest
      *
      * @return array<string, mixed>
      */
-
     public function rules()
     {
         return [
@@ -33,7 +32,7 @@ class AuthorStoreRequest extends FormRequest
     public function messages()
     {
         return [
-            'name.required' => 'Your author needs a name.',
+            'name.required' => 'Your category needs a name.',
         ];
     }
 }

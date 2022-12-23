@@ -8,6 +8,9 @@ use App\Http\Requests\AuthorStoreRequest;
 use App\Http\Requests\BookCopyStoreRequest;
 use App\Http\Requests\BookStoreRequest;
 use App\Http\Requests\CategoryStoreRequest;
+use App\Http\Requests\UpdateAuthorRequest;
+use App\Http\Requests\UpdateBookRequest;
+use App\Http\Requests\UpdateCategoryRequest;
 use App\Models\Author;
 use App\Models\Book;
 use App\Models\Category;
@@ -67,6 +70,29 @@ class AdminController extends Controller
         return back();
     }
 
+    public function adminEditCategory(Category $category)
+    {
+        return view('admin.sections.category.category_edit', compact('category'));
+    }
+
+    public function adminUpdateCategory(UpdateCategoryRequest $request, $category)
+    {
+        $category = Category::findOrFail($category);
+
+        $category->update($request->validated());
+
+        return redirect()->route('admin.category');
+    }
+
+        public function adminDeleteCategory(Category $category)
+    {
+        if ($category->books->count() >= 1) {
+            return back();
+        }
+
+        $category->delete();
+    }
+
     //AUTHOR METHODS
     public function adminAuthor()
     {
@@ -84,6 +110,29 @@ class AdminController extends Controller
         Author::create($request->validated());
 
         return back();
+    }
+
+    public function adminEditAuthor(Author $author)
+    {
+        return view('admin.sections.author.author_edit', compact('author'));
+    }
+
+    public function adminUpdateAuthor(UpdateAuthorRequest $request, $author)
+    {
+        $author = Author::findOrFail($author);
+
+        $author->update($request->validated());
+
+        return redirect()->route('admin.author');
+    }
+
+    public function adminDeleteAuthor(Author $author)
+    {
+        if ($author->books->count() >= 1) {
+            return back();
+        }
+
+        $author->delete();
     }
 
     //BOOK METHODS
@@ -124,6 +173,51 @@ class AdminController extends Controller
         }
 
         return back();
+    }
+
+    public function adminEditBook(Book $book)
+    {
+        $categories = Category::with('books')->get();
+        $authors = Author::all();
+
+        return view('admin.sections.book.book_edit', compact('book', 'categories', 'authors'));
+    }
+
+    public function adminUpdateBook(UpdateBookRequest $request, $book)
+    {
+        $book = Book::findOrFail($book);
+
+        $book->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'isbn' => $request->isbn,
+            'edition' => $request->edition,
+            'author_id' => $request->author_id,
+            'category_id' => $request->category_id,
+        ]);
+
+        if($request->hasFile('book_cover')) {
+            unlink($book->book_cover);
+
+            $book_cover = $request->file('book_cover');
+            $cover_name = $book_cover->getClientOriginalName();
+            $file_path = 'storage/book_covers/' . $book->id . '/' . $cover_name;
+            $book_cover->storeAs('book_covers/' . $book->id, $cover_name,'public');
+            $book->update([
+                'book_cover' => $file_path,
+            ]);
+        }
+
+        return redirect()->route('admin.book');
+    }
+
+    public function adminDeleteBook(Book $book)
+    {
+        if ($book->copies->count() >= 1) {
+            return back();
+        }
+
+        $book->delete();
     }
 
     //BOOK COPIES
